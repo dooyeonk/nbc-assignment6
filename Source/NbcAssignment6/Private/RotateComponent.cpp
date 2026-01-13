@@ -19,6 +19,14 @@ void URotateComponent::BeginPlay()
 		ActualInterval,
 		true
 	);
+	
+	GetWorld()->GetTimerManager().SetTimer(
+		ReverseEventTimerHandle,
+		this,
+		&URotateComponent::ReverseRotation,
+		ReverseEventFrequency,
+		true
+	);
 }
 
 void URotateComponent::UpdateRotation() const
@@ -27,4 +35,9 @@ void URotateComponent::UpdateRotation() const
 	{
 		Owner->AddActorLocalRotation(RotationSpeed * ActualInterval);
 	}
+}
+
+void URotateComponent::ReverseRotation()
+{
+	RotationSpeed *= -1.0f;
 }

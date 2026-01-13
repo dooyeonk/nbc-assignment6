@@ -21,10 +21,16 @@ protected:
 	
 	UPROPERTY(EditAnywhere, Category = "Rotation Settings", meta = (ClampMin = "1.0"))
 	float UpdatesPerSecond = 60.0f;
-
+	
+	UPROPERTY(EditAnywhere, Category = "Rotation Settings")
+	float ReverseEventFrequency = 5.0f;
+	
 private:
 	void UpdateRotation() const;
+	void ReverseRotation();
 	
 	FTimerHandle RotateTimerHandle;
 	float ActualInterval;
+	
+	FTimerHandle ReverseEventTimerHandle;
 };
