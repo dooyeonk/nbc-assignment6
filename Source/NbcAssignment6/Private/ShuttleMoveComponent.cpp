@@ -15,7 +15,6 @@ void UShuttleMoveComponent::BeginPlay()
 	}
 	
 	UpdatesPerSecond = UpdatesPerSecond > 0.0f ? UpdatesPerSecond : 60.0f;
-	
 	ActualInterval = 1.0f / UpdatesPerSecond;
 	
 	GetWorld()->GetTimerManager().SetTimer(
