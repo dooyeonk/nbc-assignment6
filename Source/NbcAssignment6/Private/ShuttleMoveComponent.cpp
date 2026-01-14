@@ -34,7 +34,7 @@ bool UShuttleMoveComponent::IsMovingReverse() const
 void UShuttleMoveComponent::UpdateMovement()
 {
 	AActor* Owner = GetOwner();
-	if (!Owner) return;
+	if (!Owner) { return; }
 	
 	FVector CurrentLocation = Owner->GetActorLocation();
 	FVector TargetDestination = IsMovingReverse() ? StartLocation : StartLocation + MaxRange;

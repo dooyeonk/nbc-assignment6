@@ -14,7 +14,12 @@ class NBCASSIGNMENT6_API ABasePlatform : public AActor
 	
 public:	
 	ABasePlatform();
-
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UShuttleMoveComponent* ShuttleMoveComponent;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	URotateComponent* RotateComponent;
 protected:
 	virtual void BeginPlay() override;
 	
@@ -23,10 +28,4 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	UStaticMeshComponent* StaticMeshComponent;
-	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	UShuttleMoveComponent* ShuttleMoveComponent;
-	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	URotateComponent* RotateComponent;
 };

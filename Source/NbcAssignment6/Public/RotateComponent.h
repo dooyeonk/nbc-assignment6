@@ -12,15 +12,16 @@ class NBCASSIGNMENT6_API URotateComponent : public UActorComponent
 
 public:	
 	URotateComponent();
-
-protected:
-	virtual void BeginPlay() override;
 	
+	void SetRotationActive(bool bActive) const;
+
 	UPROPERTY(EditAnywhere, Category = "Rotation Settings")
 	FRotator RotationSpeed = FRotator(0.0f, 100.0f, 0.0f);
 	
 	UPROPERTY(EditAnywhere, Category = "Rotation Settings", meta = (ClampMin = "1.0"))
 	float UpdatesPerSecond = 60.0f;
+protected:
+	virtual void BeginPlay() override;
 	
 	UPROPERTY(EditAnywhere, Category = "Rotation Settings")
 	float ReverseEventFrequency = 5.0f;

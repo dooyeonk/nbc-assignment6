@@ -15,9 +15,6 @@ public:
 
 	void SetMovementActive(bool bActive) const;
 	
-protected:
-	virtual void BeginPlay() override;
-	
 	UPROPERTY(EditAnywhere, Category = "Movement Settings")
 	float Velocity = 500.0f;
 	
@@ -26,6 +23,9 @@ protected:
 	
 	UPROPERTY(EditAnywhere, Category = "Movement Settings", meta = (ClampMin = "1.0"))
 	float UpdatesPerSecond = 60.0f;
+	
+protected:
+	virtual void BeginPlay() override;
 	
 private:	
 	void UpdateMovement();

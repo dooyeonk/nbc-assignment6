@@ -5,6 +5,20 @@ URotateComponent::URotateComponent()
 	PrimaryComponentTick.bCanEverTick = false;
 }
 
+void URotateComponent::SetRotationActive(bool bActive) const
+{
+	if (bActive)
+	{
+		GetWorld()->GetTimerManager().UnPauseTimer(RotateTimerHandle);
+		GetWorld()->GetTimerManager().UnPauseTimer(ReverseEventTimerHandle);
+	}
+	else
+	{
+		GetWorld()->GetTimerManager().PauseTimer(RotateTimerHandle);
+		GetWorld()->GetTimerManager().PauseTimer(ReverseEventTimerHandle);
+	}
+}
+
 void URotateComponent::BeginPlay()
 {
 	Super::BeginPlay();
@@ -39,7 +53,7 @@ void URotateComponent::UpdateRotation() const
 
 void URotateComponent::ReverseRotation()
 {
-	if (!bReverseEventOn) return;
+	if (!bReverseEventOn) { return; }
 	
 	RotationSpeed *= -1.0f;
 }
