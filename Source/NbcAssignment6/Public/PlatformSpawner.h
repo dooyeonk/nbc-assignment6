@@ -27,6 +27,11 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Spawning")
 	int32 SpawnCount = 30;
 	
+	UPROPERTY(EditAnywhere, Category = "Spawning")
+	float SpawnInterval = 0.2f;
 private:
-	void Spawn() const;
+	void Spawn();
+	
+	FTimerHandle SpawnTimerHandle;
+	int32 SpawnedCount = 0;
 };

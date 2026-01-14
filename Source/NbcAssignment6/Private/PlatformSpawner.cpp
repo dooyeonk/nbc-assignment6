@@ -13,12 +13,35 @@ APlatformSpawner::APlatformSpawner()
 void APlatformSpawner::BeginPlay()
 {
 	Super::BeginPlay();
-	for (int32 i = 0; i < SpawnCount; i++) { Spawn(); }
+
+	if (SpawnInterval > 0)
+	{
+		GetWorld()->GetTimerManager().SetTimer(
+			SpawnTimerHandle,
+			this,
+			&APlatformSpawner::Spawn,
+			SpawnInterval,
+			true
+		);
+	}
+	else
+	{
+		for (int i = 0; i < SpawnCount; ++i)
+		{
+			Spawn();
+		}
+	}
 }
 
-void APlatformSpawner::Spawn() const
+void APlatformSpawner::Spawn()
 {
 	if (!PlatformClass || !GetWorld()) { return; }
+
+	if (SpawnedCount >= SpawnCount)
+	{
+		GetWorld()->GetTimerManager().ClearTimer(SpawnTimerHandle);
+		return;
+	}
 
 	FVector Location = UKismetMathLibrary::RandomPointInBoundingBox(
 		SpawnArea->GetComponentLocation(),
@@ -29,7 +52,8 @@ void APlatformSpawner::Spawn() const
 		Location,
 		FRotator::ZeroRotator
 	);
-	
+
 	if (!NewPlatform) { return; }
 	NewPlatform->InitRandom();
+	SpawnedCount++;
 }
