@@ -25,6 +25,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Rotation Settings")
 	float ReverseEventFrequency = 5.0f;
 	
+	UPROPERTY(EditAnywhere, Category = "Rotation Settings")
+	bool bReverseEventOn = true;
+	
 private:
 	void UpdateRotation() const;
 	void ReverseRotation();

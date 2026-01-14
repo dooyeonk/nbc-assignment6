@@ -39,5 +39,7 @@ void URotateComponent::UpdateRotation() const
 
 void URotateComponent::ReverseRotation()
 {
+	if (!bReverseEventOn) return;
+	
 	RotationSpeed *= -1.0f;
 }
