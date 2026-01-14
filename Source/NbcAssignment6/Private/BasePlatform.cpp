@@ -29,7 +29,28 @@ void ABasePlatform::InitRandom() const
 		if (bWillMove)
 		{
 			ShuttleMoveComponent->Velocity = FMath::RandRange(300.f, 1000.f);
-			ShuttleMoveComponent->MaxRange = FVector(FMath::RandRange(700.f, 1500.f), 0, 0);
+			float RandomDist = FMath::RandRange(700.f, 1500.f);
+			int32 RandomAxis = FMath::RandRange(0, 2);
+
+			FVector NewRange = FVector::ZeroVector;
+
+			switch (RandomAxis)
+			{
+			case 0:
+				NewRange.X = RandomDist;
+				break;
+			case 1:
+				NewRange.Y = RandomDist;
+				break;
+			case 2:
+				NewRange.Z = RandomDist;
+				break;
+			default:
+				NewRange.X = RandomDist;
+				break;
+			}
+
+			ShuttleMoveComponent->MaxRange = NewRange;
 		}
 	}
 
