@@ -15,6 +15,8 @@ class NBCASSIGNMENT6_API ABasePlatform : public AActor
 public:	
 	ABasePlatform();
 	
+	void InitRandom() const;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UShuttleMoveComponent* ShuttleMoveComponent;
 	
